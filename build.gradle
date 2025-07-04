@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.3'
     id 'io.spring.dependency-management' version '1.1.4'
+    id 'com.diffplug.spotless' version '7.0.4'
 }
 
 group = 'com.marcalcocer'
@@ -17,6 +18,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.projectlombok:lombok'
     implementation 'io.micrometer:micrometer-registry-prometheus'
+
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
@@ -27,4 +29,20 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+spotless {
+    java {
+        googleJavaFormat()
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+}
+
+tasks.register('beautify') {
+    dependsOn 'spotlessApply'
+}
+
+tasks.register('verify') {
+    dependsOn 'spotlessCheck'
 }
