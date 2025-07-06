@@ -4,6 +4,7 @@ import static java.util.Collections.emptyList;
 
 import com.marcalcocer.pokemonapi.domain.model.Pokemon;
 import com.marcalcocer.pokemonapi.domain.port.in.HeaviestPokemonFetcher;
+import com.marcalcocer.pokemonapi.domain.port.in.HighestPokemonFetcher;
 import java.util.Collections;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -19,13 +20,20 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class PokemonController {
 
-  private final HeaviestPokemonFetcher pokemonFetcher;
+  private final HeaviestPokemonFetcher heaviestPokemonFetcher;
+  private final HighestPokemonFetcher highestPokemonFetcher;
 
   @GetMapping("/heaviest")
   public Mono<ResponseEntity<List<Pokemon>>> getTop5Heaviest() {
     log.info("Heaviest Pokémon request received");
-    Mono<List<Pokemon>> result = pokemonFetcher.getTop5Heaviest();
+    Mono<List<Pokemon>> result = heaviestPokemonFetcher.getTop5Heaviest();
     return createResponse(result);
+  }
+
+  @GetMapping("/highest")
+  public Mono<ResponseEntity<List<Pokemon>>> getTop5Highest() {
+    log.info("Highest Pokémon request received");
+    return createResponse(highestPokemonFetcher.getTop5Highest());
   }
 
   private Mono<ResponseEntity<List<Pokemon>>> createResponse(Mono<List<Pokemon>> result) {
@@ -37,7 +45,7 @@ public class PokemonController {
                 return ResponseEntity.status(HttpStatus.NO_CONTENT)
                     .body(Collections.<Pokemon>emptyList());
               }
-              log.info("Returning {} heaviest Pokémon", pokemons.size());
+              log.info("Returning {} Pokémon response", pokemons.size());
               return ResponseEntity.ok(pokemons);
             })
         .onErrorResume(
