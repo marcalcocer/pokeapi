@@ -84,7 +84,8 @@ public class PokeApiClient {
         .map(
             dto -> {
               log.trace("Received details for Pokémon: {}", dto.toString());
-              return new Pokemon(dto.id(), dto.name(), dto.weight(), dto.height());
+              return new Pokemon(
+                  dto.id(), dto.name(), dto.weight(), dto.height(), dto.baseExperience());
             });
   }
 

@@ -13,7 +13,6 @@ import reactor.core.publisher.Mono;
 @Service
 @RequiredArgsConstructor
 public class HighestPokemonService implements HighestPokemonFetcher {
-
   private final PokemonRepository repository;
 
   @Override

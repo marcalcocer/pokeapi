@@ -5,6 +5,7 @@ import static java.util.Collections.emptyList;
 import com.marcalcocer.pokemonapi.domain.model.Pokemon;
 import com.marcalcocer.pokemonapi.domain.port.in.HeaviestPokemonFetcher;
 import com.marcalcocer.pokemonapi.domain.port.in.HighestPokemonFetcher;
+import com.marcalcocer.pokemonapi.domain.port.in.MostExperiencedPokemonFetcher;
 import java.util.Collections;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ public class PokemonController {
 
   private final HeaviestPokemonFetcher heaviestPokemonFetcher;
   private final HighestPokemonFetcher highestPokemonFetcher;
+  private final MostExperiencedPokemonFetcher mostExperiencedPokemonFetcher;
 
   @GetMapping("/heaviest")
   public Mono<ResponseEntity<List<Pokemon>>> getTop5Heaviest() {
@@ -34,6 +36,12 @@ public class PokemonController {
   public Mono<ResponseEntity<List<Pokemon>>> getTop5Highest() {
     log.info("Highest Pokémon request received");
     return createResponse(highestPokemonFetcher.getTop5Highest());
+  }
+
+  @GetMapping("/most-experienced")
+  public Mono<ResponseEntity<List<Pokemon>>> getTop5MostExperienced() {
+    log.info("Most experienced Pokémon request received");
+    return createResponse(mostExperiencedPokemonFetcher.getTop5MostExperienced());
   }
 
   private Mono<ResponseEntity<List<Pokemon>>> createResponse(Mono<List<Pokemon>> result) {
