@@ -19,7 +19,7 @@ public class InMemoryPokemonCache implements PokemonCachePort {
 
   @Override
   public void save(Pokemon pokemon) {
-    cache.put(pokemon.getName().toLowerCase(), pokemon);
+    cache.put(pokemon.name().toLowerCase(), pokemon);
   }
 
   @Override
