@@ -1,7 +1,7 @@
 FROM gradle:8.5.0-jdk21 AS build
 WORKDIR /app
 COPY . .
-RUN gradle build
+RUN gradle clean build
 
 FROM eclipse-temurin:21-jre
 WORKDIR /app
