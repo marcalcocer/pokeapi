@@ -2,7 +2,6 @@ package com.marcalcocer.pokemonapi.infrastructure.pokeapi;
 
 import com.marcalcocer.pokemonapi.domain.model.Pokemon;
 import com.marcalcocer.pokemonapi.domain.port.PokemonRepository;
-import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -19,7 +18,7 @@ public class PokeApiAdapter implements PokemonRepository {
     log.debug("Fetching all Pokémon from PokeAPI");
     return apiClient
         .getAllPokemonNames()
-        .flatMap(apiClient::getPokemonDetails)
-        .filter(Objects::nonNull);
+        .transform(apiClient::getPokemonDetailsBatched)
+        .filter(p -> p.weight() > 0);
   }
 }
