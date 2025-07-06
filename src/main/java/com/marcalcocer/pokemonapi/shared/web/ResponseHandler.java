@@ -14,10 +14,14 @@ import reactor.core.publisher.Mono;
 public class ResponseHandler {
 
   public Mono<ResponseEntity<List<Pokemon>>> createPokemonResponse(Mono<List<Pokemon>> result) {
+    if (result == null) {
+      log.warn("Received null Mono for Pokémon data");
+      return internalServerErrorResponse();
+    }
     return result
         .<ResponseEntity<List<Pokemon>>>map(
             pokemons -> {
-              if (pokemons == null || pokemons.isEmpty()) {
+              if (pokemons.isEmpty()) {
                 log.warn("No Pokémon data available");
                 return ResponseEntity.status(HttpStatus.NO_CONTENT).body(Collections.emptyList());
               }
@@ -27,9 +31,12 @@ public class ResponseHandler {
         .onErrorResume(
             e -> {
               log.error("Error processing request: {}", e.getMessage());
-              return Mono.just(
-                  ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                      .body(Collections.emptyList()));
+              return internalServerErrorResponse();
             });
+  }
+
+  private Mono<ResponseEntity<List<Pokemon>>> internalServerErrorResponse() {
+    return Mono.just(
+        ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.emptyList()));
   }
 }
