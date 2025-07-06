@@ -1,8 +1,8 @@
 package com.marcalcocer.pokemonapi.application;
 
 import com.marcalcocer.pokemonapi.domain.model.Pokemon;
-import com.marcalcocer.pokemonapi.domain.port.HeaviestPokemonFetcher;
-import com.marcalcocer.pokemonapi.domain.port.PokemonRepository;
+import com.marcalcocer.pokemonapi.domain.port.in.HeaviestPokemonFetcher;
+import com.marcalcocer.pokemonapi.domain.port.out.PokemonRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

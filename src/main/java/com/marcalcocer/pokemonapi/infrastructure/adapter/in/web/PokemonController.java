@@ -1,9 +1,9 @@
-package com.marcalcocer.pokemonapi.api.controller;
+package com.marcalcocer.pokemonapi.infrastructure.adapter.in.web;
 
 import static java.util.Collections.emptyList;
 
 import com.marcalcocer.pokemonapi.domain.model.Pokemon;
-import com.marcalcocer.pokemonapi.domain.port.HeaviestPokemonFetcher;
+import com.marcalcocer.pokemonapi.domain.port.in.HeaviestPokemonFetcher;
 import java.util.Collections;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

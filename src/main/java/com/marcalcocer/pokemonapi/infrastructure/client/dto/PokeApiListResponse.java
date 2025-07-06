@@ -1,4 +1,4 @@
-package com.marcalcocer.pokemonapi.infrastructure.pokeapi.dto;
+package com.marcalcocer.pokemonapi.infrastructure.client.dto;
 
 import java.util.List;
 

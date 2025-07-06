@@ -1,8 +1,8 @@
-package com.marcalcocer.pokemonapi.infrastructure.pokeapi;
+package com.marcalcocer.pokemonapi.infrastructure.client;
 
 import com.marcalcocer.pokemonapi.domain.model.Pokemon;
-import com.marcalcocer.pokemonapi.infrastructure.pokeapi.dto.PokeApiListResponse;
-import com.marcalcocer.pokemonapi.infrastructure.pokeapi.dto.PokeApiPokemonDetailResponse;
+import com.marcalcocer.pokemonapi.infrastructure.client.dto.PokeApiListResponse;
+import com.marcalcocer.pokemonapi.infrastructure.client.dto.PokeApiPokemonDetailResponse;
 import java.time.Duration;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

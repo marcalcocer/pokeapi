@@ -1,4 +1,4 @@
-package com.marcalcocer.pokemonapi.domain.port;
+package com.marcalcocer.pokemonapi.domain.port.in;
 
 import com.marcalcocer.pokemonapi.domain.model.Pokemon;
 import java.util.List;

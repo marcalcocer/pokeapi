@@ -1,4 +1,4 @@
-package com.marcalcocer.pokemonapi.config;
+package com.marcalcocer.pokemonapi.infrastructure.config;
 
 import java.time.Duration;
 import org.springframework.context.annotation.Bean;
@@ -8,7 +8,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
 
 @Configuration
-public class WebClientConfig {
+public class PokemonConfig {
   private static final String BASE_URL = "https://pokeapi.co/api/v2";
 
   @Bean
