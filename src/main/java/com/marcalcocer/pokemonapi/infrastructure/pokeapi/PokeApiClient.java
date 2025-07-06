@@ -75,12 +75,17 @@ public class PokeApiClient {
   }
 
   private Mono<Pokemon> getPokemonDetails(String name) {
+    log.trace("Fetching details for Pokémon: {}", name);
     return webClient
         .get()
         .uri("/pokemon/{name}", name)
         .retrieve()
         .bodyToMono(PokeApiPokemonDetailResponse.class)
-        .map(dto -> new Pokemon(dto.name(), dto.weight(), dto.height()));
+        .map(
+            dto -> {
+              log.trace("Received details for Pokémon: {}", dto.toString());
+              return new Pokemon(dto.id(), dto.name(), dto.weight(), dto.height());
+            });
   }
 
   private int extractOffset(String url) {
